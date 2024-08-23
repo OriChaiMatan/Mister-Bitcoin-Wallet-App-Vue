@@ -1,11 +1,12 @@
-<script >
-
-</script>
-
 <template>
- Mr.BitCoin
+  Mr.BitCoin
+  <main>
+    <RouterView />
+  </main>
 </template>
 
-<style scoped>
+<script >
+</script>
 
+<style scoped>
 </style>

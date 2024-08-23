@@ -6,7 +6,7 @@ export const bitcoinService = {
     getAvgBlockSize,
 }
 
-function getRate() {
+async function getRate() {
     const url = 'https://blockchain.info/tobtc?currency=USD&value=1'
     return axios.get(url)
         .then(res => res.data)
