@@ -139,11 +139,12 @@ function sort(arr) {
     })
 }
 
-function getContacts(filterBy = null) {
+function getContacts(filterBy = {}) {
     return new Promise((resolve, reject) => {
         var contactsToReturn = contacts;
-        if (filterBy && filterBy.term) {
-            contactsToReturn = filter(filterBy.term)
+        if(filterBy.txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
+            contactsToReturn = contactsToReturn.filter(contactToReturn => regex.test(contactToReturn.name))
         }
         resolve(sort(contactsToReturn))
     })
