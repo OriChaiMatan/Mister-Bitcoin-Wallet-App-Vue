@@ -4,7 +4,7 @@
         <!-- <CarFilter @filter="onFilter" /> -->
         <!-- <RouterLink to="/car/edit" ><button>Add a Car</button></RouterLink> -->
     </header>
-    <ContactsList v-if="contacts" :contacts="contacts" />
+    <ContactsList v-if="contacts" @remove="removeContact" :contacts="contacts" />
 </template>
 
 <script>
@@ -15,6 +15,19 @@ export default {
         return {
             contacts: null,
         }
+    },
+    methods: {
+        async removeContact(contactId) {
+            try {
+                await contactService.deleteContact(contactId)
+
+                const idx = this.contacts.findIndex(contact => contact._id === contactId)
+                this.contacts.splice(idx, 1)
+
+            } catch (err) {
+                console.log('Something went wrong...')
+            }
+        },
     },
     async created() {
         this.contacts = await contactService.getContacts()

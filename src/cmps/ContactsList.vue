@@ -3,11 +3,9 @@
     <TransitionGroup name="list" tag="ul">
       <li v-for="contact in contacts" :key="contact._id">
         <ContactPreview :contact="contact" />
-        <!-- <div class="actions"> -->
-        <!-- <button @click="onRemoveCar(car._id)" >x</button>
-                    <RouterLink :to="`/car/${car._id}`" ><button>Details</button></RouterLink>
-                    <RouterLink :to="`/car/edit/${car._id}`" ><button>Edit</button></RouterLink> -->
-        <!-- </div> -->
+        <div class="actions">
+          <button @click="onRemoveContact(contact._id)">x</button>
+        </div>
       </li>
     </TransitionGroup>
   </section>
@@ -22,6 +20,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+        onRemoveContact(contactId) {
+            this.$emit('remove', contactId)
+        }
+    },
   components: {
     ContactPreview,
   },
@@ -41,6 +44,7 @@ export default {
     justify-items: start;
     padding: 10px;
     background-color: lightblue;
+    border-radius: 5px;
   }
 
   .actions {
