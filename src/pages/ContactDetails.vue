@@ -1,5 +1,9 @@
 <template>
   <section v-if="contact" class="contact-details">
+    <img
+        :src="`https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=${contact._id}`"
+        alt="Contact Avatar"
+      />
     <h2>{{ contact.name }}</h2>
     <h3>{{ contact.email }}</h3>
     <h3>{{ contact.phone }}</h3>
@@ -35,5 +39,12 @@ export default {
     a {
         justify-self: end;
     }
+    img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
 }
 </style>
