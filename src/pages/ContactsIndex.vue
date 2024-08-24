@@ -1,51 +1,46 @@
 <template>
   <header>
-        <h1>Contacts</h1>
-        <ContactsFilter @filter="onFilter" />
-        <RouterLink to="/contact/edit" ><button>Add Contact</button></RouterLink>
-    </header>
-    <ContactsList v-if="contacts" @remove="removeContact" :contacts="contacts" />
+    <h1>Contacts</h1>
+    <ContactsFilter @filter="onFilter" />
+    <RouterLink to="/contact/edit"><button>Add Contact</button></RouterLink>
+  </header>
+  <ContactsList v-if="contacts" @remove="removeContact" :contacts="contacts" />
 </template>
 
 <script>
-import ContactsList from '@/cmps/ContactsList.vue'
-import ContactsFilter from '@/cmps/ContactsFilter.vue'
-import { contactService } from '../services/contactService'
-import { showErrorMsg, showSuccessMsg } from '../services/eventBusService.js'
+import ContactsList from "@/cmps/ContactsList.vue";
+import ContactsFilter from "@/cmps/ContactsFilter.vue";
+import { contactService } from "../services/contactService";
+import { showErrorMsg, showSuccessMsg } from "../services/eventBusService.js";
 export default {
-    data() {
-        return {
-            contacts: null,
+  methods: {
+    async removeContact(contactId) {
+      try {
+        await this.$store.dispatch({ type: "removeContact", contactId });
+        showSuccessMsg(`Removed contact ${contactId}`);
+      } catch (err) {
+        showErrorMsg("Something went wrong...");
+        console.log(err)
+      }
+    },
+    onFilter(filterBy) {
+      this.$store.dispatch({ type: "setFilterBy", filterBy }); // Dispatch the action to update filter
+    },
+  },
+  async created() {
+    this.$store.dispatch({ type: 'loadContacts' })
+  },
+  computed: {
+        contacts() {
+            return this.$store.getters.contacts
         }
     },
-    methods: {
-        async removeContact(contactId) {
-            try {
-                await contactService.deleteContact(contactId)
-
-                const idx = this.contacts.findIndex(contact => contact._id === contactId)
-                this.contacts.splice(idx, 1)
-
-               showSuccessMsg(`Removed contact ${contactId}`)
-            } catch (err) {
-                showErrorMsg('Something went wrong...')
-            }
-        },
-        async onFilter(filterBy) {
-            this.contacts = await contactService.getContacts(filterBy)
-        }
-    },
-    async created() {
-        this.contacts = await contactService.getContacts()
-    },
-    components: {
-        ContactsList,
-        ContactsFilter,
-    }
-
-}
+  components: {
+    ContactsList,
+    ContactsFilter,
+  },
+};
 </script>
 
 <style>
-
 </style>
