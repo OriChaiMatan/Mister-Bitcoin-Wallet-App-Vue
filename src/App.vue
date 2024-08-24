@@ -1,20 +1,27 @@
 <template>
-  Mr.BitCoin
-  <main>
-    <RouterView />
-  </main>
-  <UserMsg />
+  <div class="app">
+      <AppHeader />
+    <main>
+      <RouterView />
+    </main>
+      <AppFooter />
+    <UserMsg />
+  </div>
 </template>
 
 <script >
-import UserMsg from "./cmps/UserMsg.vue";
+import UserMsg from "./cmps/UserMsg.vue"
+import AppHeader from './cmps/AppHeader.vue'
+import AppFooter from './cmps/AppFooter.vue'
 
 export default {
   components: {
     UserMsg,
+    AppHeader,
+    AppFooter,
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>
