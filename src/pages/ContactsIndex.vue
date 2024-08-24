@@ -2,7 +2,7 @@
   <header>
         <h1>Contacts</h1>
         <ContactsFilter @filter="onFilter" />
-        <!-- <RouterLink to="/car/edit" ><button>Add a Car</button></RouterLink> -->
+        <RouterLink to="/contact/edit" ><button>Add Contact</button></RouterLink>
     </header>
     <ContactsList v-if="contacts" @remove="removeContact" :contacts="contacts" />
 </template>

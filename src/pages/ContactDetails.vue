@@ -7,6 +7,7 @@
     <h2>{{ contact.name }}</h2>
     <h3>{{ contact.email }}</h3>
     <h3>{{ contact.phone }}</h3>
+    <RouterLink :to="`/contact/edit/${contact._id}`" ><button>Edit Contact</button></RouterLink>
     <RouterLink to="/contact"><button>Back</button></RouterLink>
   </section>
   <p v-else>Loading...</p>
