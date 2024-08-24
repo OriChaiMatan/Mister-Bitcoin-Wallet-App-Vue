@@ -24,4 +24,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
+    min-height: calc(90vh - 1rem);
+    padding: .5em;
+}
 </style>
