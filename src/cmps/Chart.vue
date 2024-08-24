@@ -3,6 +3,7 @@
     <div class="tradingview-widget-container__widget"></div>
     <div class="tradingview-widget-copyright">
       <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+        <span class="blue-text">Track all markets on TradingView</span>
       </a>
     </div>
   </div>
@@ -23,13 +24,14 @@ export default {
         "theme": "dark",
         "style": "1",
         "locale": "en",
+        "hide_top_toolbar": true,
+        "hide_legend": true,
         "withdateranges": true,
         "range": "YTD",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true,
-        "details": true,
-        "hotlist": true,
+        "allow_symbol_change": false,
+        "save_image": false,
         "calendar": false,
+        "hide_volume": true,
         "support_host": "https://www.tradingview.com"
       }`;
     this.$refs.container.appendChild(script);
@@ -54,4 +56,21 @@ export default {
   margin-top: 10px;
 }
 
+@media (max-width: 600px) {
+  .tradingview-widget-container {
+    height: 400px; /* Height for small screens */
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  .tradingview-widget-container {
+    height: 700px; /* Height for medium screens */
+  }
+}
+
+@media (min-width: 1201px) {
+  .tradingview-widget-container {
+    height: 900px; /* Height for large screens */
+  }
+}
 </style>

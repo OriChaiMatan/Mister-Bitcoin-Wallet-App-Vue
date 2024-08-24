@@ -1,5 +1,6 @@
 <template>
 <section class="statistic-page">
+    <h1>Bitcoin Market Data:</h1>
     <Chart />
 </section>
 </template>
