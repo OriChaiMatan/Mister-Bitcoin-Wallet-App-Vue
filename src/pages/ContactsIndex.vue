@@ -11,6 +11,7 @@
 import ContactsList from '@/cmps/ContactsList.vue'
 import ContactsFilter from '@/cmps/ContactsFilter.vue'
 import { contactService } from '../services/contactService'
+import { showErrorMsg, showSuccessMsg } from '../services/eventBusService.js'
 export default {
     data() {
         return {
@@ -25,8 +26,9 @@ export default {
                 const idx = this.contacts.findIndex(contact => contact._id === contactId)
                 this.contacts.splice(idx, 1)
 
+               showSuccessMsg(`Removed contact ${contactId}`)
             } catch (err) {
-                console.log('Something went wrong...')
+                showErrorMsg('Something went wrong...')
             }
         },
         async onFilter(filterBy) {

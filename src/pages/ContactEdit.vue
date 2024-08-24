@@ -18,6 +18,7 @@
 
 <script>
 import { contactService } from "../services/contactService";
+import { showErrorMsg, showSuccessMsg } from '../services/eventBusService';
 
 export default {
   data() {
@@ -29,9 +30,10 @@ export default {
     async onSave() {
       try {
         await contactService.saveContact(this.contact);
+        showSuccessMsg(`Save contact ${this.contact._id}`)
         this.$router.push("/contact");
       } catch (error) {
-        alert("Bad stuff");
+        showErrorMsg("Something was worng...");
       }
     },
   },
