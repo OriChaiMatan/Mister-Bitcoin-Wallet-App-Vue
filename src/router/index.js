@@ -3,7 +3,8 @@ import HomePage from '../pages/HomePage.vue'
 import ContactIndex from '../pages/ContactsIndex.vue'
 import ContactsDetails from '../pages/ContactDetails.vue'
 import ContactEdit from '../pages/ContactEdit.vue'
-import StatisticPage from '../pages/StatisticPage.vue'
+import SimpleChart from '../cmps/SimpleChart.vue'
+import MasterChart from '../cmps/MasterChart.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +32,19 @@ const router = createRouter({
     {
       path: '/statistic',
       name: 'statistic',
-      component: StatisticPage
+      component: () => import('../pages/StatisticPage.vue'),
+      children: [
+				{
+					path: 'simple-chart',
+					name: 'simple-chart',
+					component: SimpleChart,
+				},
+				{
+					path: 'master-chart',
+					name: 'master-chart',
+					component: MasterChart,
+				},
+			],
     },
   ]
 })

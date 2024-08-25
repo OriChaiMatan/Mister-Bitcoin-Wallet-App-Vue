@@ -39,7 +39,10 @@ export default {
 </script>
 
 <style scoped>
-.tradingview-widget-container {
+.tradingview-widget-container{
+  height: 600px;
+}
+/* .tradingview-widget-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -58,18 +61,18 @@ export default {
 @media (max-width: 600px) {
   .tradingview-widget-container {
     height: 400px; /* Height for small screens */
-  }
-}
-
+  /* } */
+/* } */
+/* 
 @media (min-width: 601px) and (max-width: 1200px) {
   .tradingview-widget-container {
     height: 700px; /* Height for medium screens */
-  }
-}
+  /* } */
+/* } */
 
-@media (min-width: 1201px) {
+/* @media (min-width: 1201px) {
   .tradingview-widget-container {
     height: 900px; /* Height for large screens */
-  }
-}
+  /* }  */
+/* } */ 
 </style>
