@@ -1,15 +1,15 @@
 <template>
 <section class="statistic-page">
     <h1>Bitcoin Market Data:</h1>
-    <Chart />
+    <MasterChart />
 </section>
 </template>
 
 <script>
-import Chart from '../cmps/Chart.vue'
+import MasterChart from '../cmps/MasterChart.vue'
 export default {
     components: {
-       Chart
+       MasterChart
     }
 }
 </script>
@@ -17,5 +17,10 @@ export default {
 <style lang="scss">
 .statistic-page{
     height: 600px;
+    align-items: center;
+
+    h1{
+        color: #fff;
+    }
 }
 </style>

@@ -9,3 +9,8 @@
 .router-link-active {
     color: white;
 }
+
+a:not(.router-link-active) {
+  color: gray;
+  align-content: center;
+}

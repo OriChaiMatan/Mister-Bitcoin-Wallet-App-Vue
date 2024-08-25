@@ -41,19 +41,19 @@ export default {
   text-align: center;
   margin-top: 20px;
   padding: 2rem;
-  background-color: #f9f9f9;
+  background-color: #2d2935;
   border-radius: 8px;
 
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #333;
+    color: white;
   }
 
   p {
     font-size: 1.2rem;
     margin: 0.5rem 0;
-    color: #555;
+    color: #b1adb5;
   }
 
   @media (max-width: 600px) {

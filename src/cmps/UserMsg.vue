@@ -1,63 +1,67 @@
 <template>
-    <Transition>
-        <section :class="msg.type" v-if="msg.txt" class="user-msg">
-            <p>{{ msg.txt }}</p>
-        </section>
-    </Transition>
+  <Transition>
+    <section :class="msg.type" v-if="msg.txt" class="user-msg">
+      <p>{{ msg.txt }}</p>
+    </section>
+  </Transition>
 </template>
 
 <script>
-import { eventBus } from '@/services/eventBusService'
+import { eventBus } from "@/services/eventBusService";
 
 export default {
-    data() {
-        return {
-            msg: { txt: '', type: 'success' }
-        }
+  data() {
+    return {
+      msg: { txt: "", type: "success" },
+    };
+  },
+  methods: {
+    showMsg(msg) {
+      this.msg = msg;
+      setTimeout(() => (this.msg.txt = ""), 2000);
     },
-    methods: {
-        showMsg(msg) {
-            this.msg = msg
-            setTimeout(() => this.msg.txt = '', 2000)
-        }
-    },
-    created() {
-        this.unsubscribe = eventBus.on('user-msg', this.showMsg)
-    },
-    unmounted() { this.unsubscribe() },
-}
+  },
+  created() {
+    this.unsubscribe = eventBus.on("user-msg", this.showMsg);
+  },
+  unmounted() {
+    this.unsubscribe();
+  },
+};
 </script>
 
 <style lang="scss">
 .user-msg {
-    position: absolute;
-    top: 43px;
-    right: .5rem;
+  position: absolute;
+  top: 43px;
+  right: 0.5rem;
 
-    min-width: 200px;
+  min-width: 200px;
 
-    padding: 6px;
-    background-color: darkslategrey;
-    border-radius: 5px;
+  padding: 6px;
+  background-color: darkslategrey;
+  border-radius: 5px;
 
-    color: white;
+  color: white;
 
-    &.success {
-        background-color: darkseagreen;
-    }
+  &.success {
+    background-color: #181420;
+    border: 1px solid #654bc1;
+  }
 
-    &.error {
-        background-color: orangered;
-    }
+  &.error {
+    background-color: orangered;
+    border: 1px solid #fff;
+  }
 }
 .v-enter-active,
 .v-leave-active {
-    transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-    opacity: 0;
-    translate: 150%;
+  opacity: 0;
+  translate: 150%;
 }
 </style>

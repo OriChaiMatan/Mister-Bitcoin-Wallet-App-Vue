@@ -4,7 +4,7 @@
       <li v-for="contact in contacts" :key="contact._id">
         <ContactPreview :contact="contact" />
         <div class="actions">
-          <button @click="onRemoveContact(contact._id)">x</button>
+          <button @click="onRemoveContact(contact._id)">Delete</button>
         </div>
       </li>
     </TransitionGroup>
@@ -40,17 +40,24 @@ export default {
   list-style: none;
 
   li {
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     justify-items: start;
-    padding: 10px;
-    background-color: lightblue;
+    padding: 5px;
+    border: 1px solid #654bc1;
     border-radius: 5px;
   }
 
   .actions {
-    display: flex;
-    gap: 6px;
     justify-self: end;
+    align-content: center;
+
+    button{
+      background: #181420;
+
+    border: 1px solid #654bc1;
+      color: white;
+    }
   }
 }
 

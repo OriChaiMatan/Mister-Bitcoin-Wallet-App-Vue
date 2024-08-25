@@ -18,10 +18,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5vh;
+    height: 6vh;
 
     padding: 10px;
-    background-color: lightblue;
+    border-bottom: 3px solid #2d2935;
+    color: white;
 
     nav {
         display: flex;

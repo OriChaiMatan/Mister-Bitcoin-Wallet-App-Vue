@@ -8,10 +8,8 @@
 footer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 5vh;
-
+    border-top: 3px solid #2d2935;
     padding: 10px;
-    background-color: lightblue;
+    color: white;
 }
 </style>
