@@ -9,12 +9,17 @@
     <h3>Phone: {{ contact.phone }}</h3>
     <RouterLink :to="`/contact/edit/${contact._id}`" ><button>Edit Contact</button></RouterLink>
     <RouterLink to="/contact"><button>Back</button></RouterLink>
+
+    <TransferFunds :contactId="contact._id" :contactName="contact.name" />
+
   </section>
   <p v-else>Loading...</p>
 </template>
 
 <script>
 import { contactService } from '../services/contactService'
+import TransferFunds from '../cmps/TransferFunds.vue'
+
 export default {
      data() {
         return {
@@ -24,7 +29,10 @@ export default {
     async created() {
         const { id: contactId } = this.$route.params
         this.contact = await contactService.getContactById(contactId)
-    }
+    },
+    components: {
+    TransferFunds,
+  },
 };
 </script>
 
