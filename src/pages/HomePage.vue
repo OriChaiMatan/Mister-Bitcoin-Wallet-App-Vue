@@ -4,11 +4,13 @@
     <p>Your balance: {{ user.balance }} USD</p>
     <p>Current Bitcoin Rate: 1 USD = {{ bitcoinRate }} BTC</p>
   </section>
+  <TransactionList :limit="3" />
 </template>
 
 <script>
 import { userService } from "@/services/userService.js";
 import { bitcoinService } from "@/services/bitcoinService.js";
+import TransactionList from '../cmps/TransactionList.vue';
 
 export default {
   data() {
@@ -32,6 +34,9 @@ export default {
         console.error("Failed to load Bitcoin rate:", error);
       }
     },
+  },
+  components: {
+    TransactionList,
   },
 };
 </script>

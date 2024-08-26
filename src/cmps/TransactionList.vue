@@ -2,8 +2,8 @@
   <div class="transaction-list">
     <h3>Transaction History</h3>
     <ul>
-      <li v-if="transactions.length === 0">No transactions found.</li>
-      <li v-for="transaction in transactions" :key="transaction.at">
+      <li v-if="filteredTransactions.length === 0">No transactions found.</li>
+      <li v-for="transaction in filteredTransactions" :key="transaction.at">
         <div class="transaction-item">
           <span>To: {{ transaction.to }}</span>
           <span>Amount: {{ transaction.amount }} BTC</span>
@@ -21,7 +21,11 @@ export default {
   props: {
     contactId: {
       type: String,
-      required: true,
+      default: '',
+    },
+    limit: {
+      type: Number,
+      default: null,
     },
   },
   data() {
@@ -32,10 +36,20 @@ export default {
   created() {
     this.loadTransactions();
   },
+  computed: {
+    filteredTransactions() {
+      if (this.contactId) {
+        const transactionsToContact = this.transactions.filter(transaction => transaction.toId === this.contactId);
+        return this.limit ? transactionsToContact.slice(-this.limit).reverse() : transactionsToContact;
+      } else {
+        return this.limit ? this.transactions.slice(-this.limit).reverse() : this.transactions;
+      }
+    },
+  },
   methods: {
     loadTransactions() {
       const user = userService.getUser();
-      this.transactions = user.transactions.filter(transaction => transaction.toId === this.contactId);
+      this.transactions = user.transactions;
     },
   },
 };
@@ -53,6 +67,7 @@ export default {
 h3 {
   font-size: 1.5rem;
   margin-bottom: 15px;
+  color: #fff;
 }
 
 ul {

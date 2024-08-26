@@ -45,7 +45,6 @@ export default {
   text-align: center;
   gap: 15px;
   padding: 40px;
-  max-width: 400px;
   margin: 30px auto;
   background-color: #2d2935;
   border: 1px solid #654bc1;
