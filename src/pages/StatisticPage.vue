@@ -52,6 +52,7 @@
     justify-content: center;
     gap: 20px;
     margin-bottom: 30px;
+    align-items: center;
 
     .chart-link {
       padding: 10px 20px;
