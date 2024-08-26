@@ -11,6 +11,7 @@
     <RouterLink to="/contact"><button>Back</button></RouterLink>
 
     <TransferFunds :contactId="contact._id" :contactName="contact.name" />
+    <TransactionList :contactId="contact._id" />
 
   </section>
   <p v-else>Loading...</p>
@@ -19,6 +20,7 @@
 <script>
 import { contactService } from '../services/contactService'
 import TransferFunds from '../cmps/TransferFunds.vue'
+import TransactionList from '../cmps/TransactionList.vue'
 
 export default {
      data() {
@@ -32,6 +34,7 @@ export default {
     },
     components: {
     TransferFunds,
+    TransactionList
   },
 };
 </script>
