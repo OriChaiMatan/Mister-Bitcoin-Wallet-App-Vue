@@ -13,7 +13,16 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: HomePage,
+      beforeEnter: (to, from, next) => {
+        // Redirect to signup if there's no logged-in user
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+          next('/signup');
+        } else {
+          next();
+        }
+      },
     },
     {
       path: '/signup',

@@ -8,7 +8,7 @@
           <input
             type="text"
             id="username"
-            v-model="formData.username"
+            v-model="username"
             placeholder="Enter your username"
             required
           />
@@ -23,16 +23,32 @@
 export default {
   data() {
     return {
-      formData: {
-        username: '',
-      },
+      username: '',
     };
   },
   methods: {
     handleSubmit() {
-      // Here you would typically handle form validation and submission
-      console.log("Form Submitted", this.formData);
-      // Example: Send formData to your API
+      if (!this.username) return;
+
+      // Check if the user exists in localStorage
+      const storedUser = JSON.parse(localStorage.getItem(this.username));
+
+      if (storedUser) {
+        // User exists, log them in with their stored data
+        localStorage.setItem('currentUser', JSON.stringify(storedUser));
+      } else {
+        // New user, create and store user with 100 Bitcoin balance
+        const newUser = {
+          name: this.username,
+          balance: 100,
+          transactions: [],
+        };
+        localStorage.setItem(this.username, JSON.stringify(newUser));
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+      }
+
+      // Redirect to home page
+      this.$router.push('/');
     },
   },
 };
@@ -85,9 +101,8 @@ input[type="text"] {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background: #181420;
-
-    border: 1px solid #654bc1;
+  background-color: #181420;
+  border: 1px solid #654bc1;
   color: white;
   border: none;
   border-radius: 4px;

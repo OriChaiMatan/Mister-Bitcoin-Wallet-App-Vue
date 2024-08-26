@@ -1,14 +1,12 @@
-const user = {
-    name: "Ori Chai-Matan",
-    balance: 100,
-    transactions: [],
-  };
-  
-  function getUser() {
-    return user;
-  }
-  
-  export const userService = {
-    getUser,
-  };
-  
+export const userService = {
+  getUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  },
+  saveUser(user) {
+    localStorage.setItem(user.name, JSON.stringify(user));
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  },
+  logout() {
+    localStorage.removeItem('currentUser');
+  },
+};
